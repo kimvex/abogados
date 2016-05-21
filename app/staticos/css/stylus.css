@@ -1,0 +1,196 @@
+html,body{
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.inicio{
+	background: url('../img/inicio.jpg');
+	background-size: cover; 
+	background-attachment: fixed;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.inicio h1{
+	font-size: 6em;
+	color: #fff;
+	margin-bottom: 1.5rem;
+}
+.inicio .formulario{
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.inicio .formulario h4{
+	color: #fff;
+	font-size: 2em;
+	margin: 0;
+	background: rgba(0,0,0,.4);
+	margin-bottom: .3rem;
+	padding: 0 1em;
+}
+.inicio .formulario input{
+	width: 100%;
+	padding: 1rem 0;
+	border: none;
+	border-bottom: 2px solid rgba(0,0,0,.2);
+	outline: none;
+	color: gray;
+	font-size: 1rem;
+	padding-left: .1rem;
+}
+.inicio .formulario .ingresar{
+	width: 100%;
+	padding: 1rem 0;
+	background: #ffb300;
+	margin: 0;
+	margin-top: 1rem;
+	border: none;
+	color: #fff;
+	font-size: 1.5rem;
+	border-bottom: 10px solid #ff8f00;
+}
+nav{
+	width: 100%;
+	position: fixed;
+	z-index: 1001;
+}
+nav ul{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+nav ul li{
+	width: 15%;
+	text-align: center;
+	padding-top: 1.5em;
+	padding-bottom: 1em;
+	list-style: none;
+}
+nav ul li:hover{
+	border-bottom: 2px solid #fff;
+}
+
+nav ul li a{
+	text-decoration: none;
+	color: #fff;
+	width: 100%;
+}
+.somos{
+	background: url('../img/somos.jpg');
+	background-size: cover; 
+	background-attachment: fixed;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.somos .parrafo-somos{
+	width: 60%;
+	height: 70%;
+	background: rgba(255,255,255,.7);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow-y: hidden; 
+}
+.somos .parrafo-somos h2{
+	color: gray;
+	text-align: center;
+	font-size: 2rem;
+	margin-bottom: 0;
+	font-weight: 700;
+}
+.somos .parrafo-somos p{
+	color: gray;
+	width: 95%;
+	text-align: justify;
+	font-size: 1.5rem;
+	white-space: pre-line;
+
+}
+.registrate{
+	width: 100%;
+	height: 100%;
+	background: url('../img/registrate.jpg') no-repeat;
+	background-attachment: fixed;
+	background-size: cover; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.registrate .formulario-registrate{
+	width: 27%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	padding: .3rem 1.5rem;
+}
+.registrate .formulario-registrate h3{
+	color: #ffb300;
+	margin: 0;
+	font-size: 3em;
+	margin-bottom: .6rem;
+}
+.registrate .formulario-registrate input{
+	width: 100%;
+	padding: .6rem 0;
+	border: none;
+	border-bottom: 2px solid rgba(0,0,0,.2);
+	outline: none;
+	color: gray;
+	font-size: 1rem;
+}
+.registrate .formulario-registrate .registrar{
+	background:  #ffb300;
+	color: #fff;
+	border: none;
+	padding: .7rem 0;
+	border-bottom: 9px solid #ff8f00;
+	margin-top: 1.5rem; 
+}
+span{
+	color: gray;
+	margin-top: .3em;
+}
+
+.pie{
+	width: 100%;
+	height: 30%;
+	background: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.pie div{
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	border-left: 2px solid #fff;
+	border-right: 2px solid #fff;
+}
+.pie div h3{
+	color: #fff;
+	margin: 0;
+	font-size: 2.5em;
+	padding-bottom: 1em;
+}
+.pie div span{
+	color: #fff;
+}
+

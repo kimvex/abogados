@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Información Personal</title>
+	<link rel="stylesheet" type="text/css" href="css/informacion-1.css">
+</head>
+<body class="cuerpo-inf-per">
+	<section class="contenido-informacion">
+		<h3 class="titulo-informacion">Información Personal</h3>
+		<img class="img-inf" src="img/anonimo.jpg">
+		<span class="span-foto">Agrega una foto a tu perfil</span>
+		<input type="file" id="subir-foto" class="subir-foto">
+		<ul class="ul-inf">			
+			<li class="li-inf" id="nombre-inf">NOMBRE:  {{ dato.nombre }}</li>
+			<li class="li-inf" id="apellido-inf">APELLIDO: {{ dato.apellidos }}</li>
+			<li class="li-inf" id="nacimiento-inf">FECHA NACIMIENTO: {{ dato.fec_nac }}</li>
+			<li class="li-inf" id="domicilio-inf">DOMICILIO: {{ dato.domicilio }}</li>
+			<li class="li-inf" id="sexo-inf">SEXO: {{ dato.sexo }}</li>
+			<li class="li-inf" id="ocupacion-inf">OCUPACION: {{ dato.ocupacion }}</li>
+			<li class="li-inf" id="ciudad-inf">CIUDAD: {{ dato.ciudad }}</li>
+			<li class="li-inf" id="telefono-inf">TELEFONO: {{ dato.num_telefono }}</li>
+			<li class="li-inf" id="correo-inf">CORREO: {{ dato.correo }}</li>
+			<li class="li-inf"></li>
+		</ul>
+	</section>
+</body>
+</html>

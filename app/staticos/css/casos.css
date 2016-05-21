@@ -1,0 +1,68 @@
+.cuerpo-casos{
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+}
+.contenido-casos{
+	width: 80%;
+}
+.titulo-casos{
+	color: #00695c;
+	font-size: 2rem;
+	text-align: center;
+	border-bottom: 2px solid #00695c; 
+}
+.ul-casos-titulo{
+	background: #00695c;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.ul-casos{
+	padding: 0;
+	margin: 0;
+	margin-top: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.li-casos-t{
+	color: #fff;
+	list-style: none;
+	padding: .5rem 0;
+	text-align: center;
+	font-size: 1.3rem;
+}
+.li-casos{
+	color: #00695c;
+	list-style: none;
+	padding: .5rem 0;
+	text-align: center;
+	font-size: 1rem;
+}
+.numero-casos{
+	width: 10%;
+}
+.descripcion-casos{
+	width: 54%;
+}
+.folio-casos{
+	width: 15%;
+}
+.status-casos{
+	width: 20%;
+}
+
+
+
+
+
+
+

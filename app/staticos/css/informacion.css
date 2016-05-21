@@ -1,0 +1,44 @@
+.cuerpo-inf-per{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+}
+.contenido-informacion{
+	width: 50%;
+	height: 350px;
+	border: 1px solid #00695c;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.titulo-informacion{
+	color: #00695c;
+	font-size: 2rem;
+	text-align: center;
+	border-bottom: 2px solid #00695c; 
+}
+.img-inf{
+	width: 150px;
+	height: 150px;
+	margin: .5rem 0;
+	border-radius: 4.5rem;
+	box-shadow: rgba(0,0,0,1) 0px 0px 20px;
+}
+.span-foto{
+	color: #00695c;
+}
+.subir-foto{
+	margin: .5rem 0;
+}
+.li-inf{
+	width: 90%;
+	padding: .3rem 0;
+	text-align: center;
+	list-style: none;
+	color: #00695c;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<title>JB-Soft</title>
+	<link rel="stylesheet" type="text/css" href="css/stylus.css">
+	<script src="js/abogados.js"></script>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="#">INICIO</a></li>
+			<li><a href="#somos">QUIENES SOMOS</a></li>
+			<li><a href="#registrate">REGISTRATE</a></li>
+			<li><a href="#pie">CONTACTANOS</a></li>
+		</ul>
+	</nav>
+	<header class="inicio">
+		<h1>JB-SOFT</h1>
+		<form class="formulario" id="login">
+			<h4>CLIENTES</h4>
+			<input type="mail" placeholder="Usuario" name="usuario" id="usuario" required>
+			<input type="password" placeholder="Contraseña" name="pass" id="pass" required>
+			<input type="submit" value="Ingresar" class="ingresar">
+		</form>
+	</header>
+	<section class="somos" id="somos">
+		<article class="parrafo-somos">
+			<h2>Quienes Somos</h2>
+			<p>JB-Soft es una empresa con un equipo de profesionales, con una formacion solida y una larga experiencia, dedicada a la administracion y gestion en asuntos juridicos de una manera rapida y eficiente ya que nuestra finalidad es darle a nuestros clientes la accesibilidad a todos sus casos y brindar la asesoria necesaria. 
+			Nuestra buena reputacion como despacho en el asesoramiento y gestion empresarial es fruto de la satisfaccion de nuestros clientes.
+			Nuestra relacion con el cliente es personal, activa y profesional. Siempre nos preocupamos de garantizarle el mejor servicio integral en el asesoramiento en los àmbitos fiscal, contable, laboral y mercantil.    
+			</p>
+		</article>
+	</section>
+	<section class="registrate" id="registrate">
+		<form class="formulario-registrate" id="registro">
+			<h3>Registrate</h3>
+			<input type="text" id="nombre" placeholder="Nombre">
+			<input type="text" id="apellido" placeholder="Apellido">
+			<span>Fecha de Nacimiento</span>
+			<input type="date" id="nacimiento" name="nacimiento">
+			<input type="text" id="domicilio" name="domicilio" placeholder="Domicilio">
+			<input type="text" id="sexo" name="sexo" placeholder="Sexo">
+			<input type="text" id="ocupacion" name="ocupacion" placeholder="Ocupacion">
+			<input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
+			<input type="number" id="telefono" name="telefono" placeholder="Telefono">
+			<input type="email" id="correo" name="correo" placeholder="Correo">
+			<input type="password" id="pass1" name="pass" placeholder="Contraseña">
+			<input type="password" id="pass2" name="pass2" placeholder="Repetir contraseña">
+			<input type="submit" id="registrar" value="Registrar" class="registrar">
+		</form>
+		<span id="fallo"></span>
+	</section>
+	<footer class="pie" id="pie">
+		<div>
+			<h3>JB-SOFT</h3>
+			<span>Desarrollado por el Equipo #1</span>
+		</div>
+	</footer>
+	<script>
+		localStorage['lugar'] = 'inicio';
+	</script>
+</body>
+</html>
