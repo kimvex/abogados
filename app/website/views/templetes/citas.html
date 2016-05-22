@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="utf-8">
-	<title>Citas</title>
-	<link rel="stylesheet" type="text/css" href="css/citas.css">
-</head>
 <body class="cuerpo-citas">
 	<section class="contenido-citas">
 		<h3 class="titulo-citas">Citas</h3>
 		<h4 class="titulo-nueva-cita">Nueva Solicitud de Cita</h4>
 		<form class="formulario-cita" id="formulario-cita">
-			<input type="text" id="asunto" class="input-form" placeholder="Asunto">
-			<input type="text" id="cc" class="input-form" placeholder="CC">
-			<input type="date" id="fecha-cita" class="fecha-cita">
+			<input type="text" id="asunto" name="asunto" class="input-form" placeholder="Asunto">
+			<input type="text" id="cc" name="cc" class="input-form" placeholder="CC">
+			<input type="date" id="fecha-cita" name="fecha-cita" class="fecha-cita">
 			<input type="submit" class="input-form-enviar" id="enviar-cita" value="Solicitar Cita">
 		</form>
 		<article class="solicitudes" id="solicitudes">
@@ -35,4 +28,3 @@
 		</article>
 	</section>
 </body>
-</html>

@@ -5,6 +5,6 @@ import registros from './registro/registro';
 
 $(document).ready(()=>{
 	login();
-	clientes();
+  clientes();
   registros();
 });

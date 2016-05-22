@@ -11,38 +11,88 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var citas = function citas() {
+  if (localStorage['lugar-peq'] == 'citas') {
+    var enviar = function enviar(e) {
+      var datos = {
+        asunto: (0, _jquery2.default)("#asunto").val(),
+        cc: (0, _jquery2.default)("#cc").val(),
+        fecha: (0, _jquery2.default)("#fecha-cita").val()
+      };
+      _jquery2.default.ajax('/cita', {
+        type: 'POST',
+        dataType: 'json',
+        data: datos,
+        success: function success(data) {
+          console.log(data);
+        }
+      });
+
+      e.preventDefault();
+    };
+
+    (0, _jquery2.default)("#formulario-cita").submit(enviar);
+  }
+};
+
+exports.default = citas;
+
+},{"jquery":6}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _citas = require('../citas/citas');
+
+var _citas2 = _interopRequireDefault(_citas);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var cliente = function cliente() {
-  function informacion(e) {
+  if (localStorage['lugar'] == 'perfil') {
+    var informacion = function informacion(e) {
+      _jquery2.default.get('/informacion-personal', function (data) {
+        document.getElementById('contenido-clientes').innerHTML = data;
+      });
+      e.preventDefault();
+    };
+
+    var casos = function casos(e) {
+      _jquery2.default.get('/casos', function (data) {
+        localStorage['lugar-peq'] = "citaaa";
+        document.getElementById('contenido-clientes').innerHTML = data;
+      });
+      e.preventDefault();
+    };
+
+    var citas = function citas(e) {
+      _jquery2.default.get('/citas', function (data) {
+        localStorage['lugar-peq'] = "citas";
+        document.getElementById('contenido-clientes').innerHTML = data;
+        (0, _citas2.default)();
+      });
+      //e.preventDefault();
+    };
+
+    (0, _jquery2.default)("#inf-personal").click(informacion);
+    (0, _jquery2.default)("#casos").click(casos);
+    (0, _jquery2.default)("#citas").click(citas);
+
     _jquery2.default.get('/informacion-personal', function (data) {
       document.getElementById('contenido-clientes').innerHTML = data;
     });
-    e.preventDefault();
   }
-  function casos(e) {
-    _jquery2.default.get('/casos', function (data) {
-      document.getElementById('contenido-clientes').innerHTML = data;
-    });
-    e.preventDefault();
-  }
-  function citas(e) {
-    _jquery2.default.get('/citas', function (data) {
-      document.getElementById('contenido-clientes').innerHTML = data;
-    });
-    e.preventDefault();
-  }
-
-  (0, _jquery2.default)("#inf-personal").click(informacion);
-  (0, _jquery2.default)("#casos").click(casos);
-  (0, _jquery2.default)("#citas").click(citas);
-
-  _jquery2.default.get('/informacion-personal', function (data) {
-    document.getElementById('contenido-clientes').innerHTML = data;
-  });
 };
 
 exports.default = cliente;
 
-},{"jquery":5}],2:[function(require,module,exports){
+},{"../citas/citas":1,"jquery":6}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -83,7 +133,7 @@ var login = function login() {
 
 exports.default = login;
 
-},{"jquery":5}],3:[function(require,module,exports){
+},{"jquery":6}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -135,7 +185,7 @@ var registro = function registro() {
 
 exports.default = registro;
 
-},{"jquery":5}],4:[function(require,module,exports){
+},{"jquery":6}],5:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -157,12 +207,12 @@ var _registro2 = _interopRequireDefault(_registro);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)(document).ready(function () {
-	(0, _login2.default)();
-	(0, _clientes2.default)();
-	(0, _registro2.default)();
+  (0, _login2.default)();
+  (0, _clientes2.default)();
+  (0, _registro2.default)();
 });
 
-},{"./clientes/clientes":1,"./inicio/login":2,"./registro/registro":3,"jquery":5}],5:[function(require,module,exports){
+},{"./clientes/clientes":2,"./inicio/login":3,"./registro/registro":4,"jquery":6}],6:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
@@ -10006,4 +10056,4 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}]},{},[4]);
+},{}]},{},[5]);

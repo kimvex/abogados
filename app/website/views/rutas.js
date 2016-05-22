@@ -3,7 +3,8 @@ var db          = require('../controllers/db'),
     moment      = require('moment'),
     validar     = require('../../middlewares/iniciado'),
     Registro    = require('../controllers/registro'),
-    Informacion = require('../models/informacionPersonal');
+    Informacion = require('../models/informacionPersonal'),
+    Cita        = require('../models/cita');
 
 var dbis = new db();
 var rutas = function(config){
@@ -32,7 +33,7 @@ var rutas = function(config){
     res.render('casos');
   });  
 
-  config.app.get('/citas',validar.iniciado,(sol,res,next)=>{
+  config.app.get('/citas',(sol,res,next)=>{
     res.render('citas');
   });
 
@@ -72,6 +73,16 @@ var rutas = function(config){
     }
    
    var registrar = new Registro(datos);
+  });
+
+  config.app.post('/cita',(sol,res,next)=>{
+    var datos = {
+      sol: sol,
+      res: res
+    }
+
+    var citas = new Cita(datos);
+
   });
 
 }
