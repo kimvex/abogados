@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>Abogados</title>
+	<link rel="stylesheet" type="text/css" href="css/abogados.css">
+	<link rel="stylesheet" type="text/css" href="css/solicitudes.css">
+	<script>
+		localStorage['lugar'] = 'abogados';
+	</script>
+	<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/abogados/abogados.js"></script>
+
+</head>
+<body>
+	<nav class="cabecera-abogado">
+		<h2>Abogados</h2>
+		<ul>
+			<a href="/salir">
+				<li>Salir</li>
+			</a>
+		</ul>
+	</nav>
+	<section class="abogado">
+		<nav class="menu-abogado">
+				<a href="#" id="solicitud-abogado"><li>Solicitudes</li></a>
+				<a href="#" id="casos"><li>Casos</li></a>
+		</nav>
+		<div class="contenido-abogado" id="contenido-abogado">
+			
+		</div>
+	</section>
+</body>
+</html>
