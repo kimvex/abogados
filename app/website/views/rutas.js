@@ -35,6 +35,17 @@ var rutas = function(config){
 
   config.app.get('/citas',(sol,res,next)=>{
     res.render('citas');
+  });  
+
+  config.app.get('/perfil-abogados',(sol,res,next)=>{
+    res.render('abogados-perfil');
+  }); 
+
+  config.app.get('/casos-abogados',(sol,res,next)=>{
+    res.render('casos-abogados');
+  });  
+  config.app.get('/solicitudes',(sol,res,next)=>{
+    res.render('solicitudes');
   });
 
   config.app.get('/salir',validar.iniciado,(sol,res,next)=>{
