@@ -18,10 +18,10 @@ var registro = function(config){
           console.log(error);
         }
 
-        console.log(respuesta);
+        config.res.json("=>");
       })
     }else{
-      console.log(datos);
+      config.res.json("==>");
     }
   });
 }

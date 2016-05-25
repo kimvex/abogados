@@ -4,7 +4,8 @@ var db          = require('../controllers/db'),
     validar     = require('../../middlewares/iniciado'),
     Registro    = require('../controllers/registro'),
     Informacion = require('../models/informacionPersonal'),
-    Cita        = require('../models/cita');
+    Cita        = require('../models/cita'),
+    Solicitud   = require('../models/solicitudes');
 
 var dbis = new db();
 var rutas = function(config){
@@ -49,6 +50,15 @@ var rutas = function(config){
   });  
   config.app.get('/informacion-abogados',(sol,res,next)=>{
     res.render('informacion-abogados');
+  });
+
+  config.app.get('/solicitud',validar.iniciado,(sol,res,next)=>{
+    var datos = {
+      sol: sol,
+      res: res
+    }
+
+    var solicitudes = new Solicitud(datos);
   });
 
   config.app.get('/salir',validar.iniciado,(sol,res,next)=>{

@@ -6,6 +6,7 @@ var cliente = ()=>{
     function informacion(e){
       $.get('/informacion-personal',function(data){
         document.getElementById('contenido-clientes').innerHTML = data;
+
       });
       e.preventDefault();
     } 
@@ -21,6 +22,7 @@ var cliente = ()=>{
         localStorage['lugar-peq'] = "citas";
         document.getElementById('contenido-clientes').innerHTML = data;
         cit();
+
       });
       e.preventDefault();
     }
