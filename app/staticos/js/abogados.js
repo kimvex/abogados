@@ -9,6 +9,10 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _respuestas = require('./respuestas');
+
+var _respuestas2 = _interopRequireDefault(_respuestas);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var citas = function citas() {
@@ -25,19 +29,51 @@ var citas = function citas() {
         data: datos,
         success: function success(data) {
           console.log(data);
+          (0, _respuestas2.default)();
         }
       });
-
       e.preventDefault();
     };
 
     (0, _jquery2.default)("#formulario-cita").submit(enviar);
+    (0, _respuestas2.default)();
   }
 };
 
 exports.default = citas;
 
-},{"jquery":6}],2:[function(require,module,exports){
+},{"./respuestas":2,"jquery":7}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var respuestas = function respuestas() {
+  _jquery2.default.get('/solicitud', function (data) {
+    console.log(data);
+    var cit;
+    for (var i in data) {
+      if (cit == undefined) {
+        cit = '<ul class="solicitudes-estado-t"><li class="asunto-solicitud-t">' + data[i].asunto + '</li><li class="fecha-solicitud-t">' + data[i].cc + '</li><li class="estado-solicitud-t">' + data[i].id + '</li></ul>';
+      } else {
+        cit = cit + '<ul class="solicitudes-estado-t"><li class="asunto-solicitud-t">' + data[i].asunto + '</li><li class="fecha-solicitud-t">' + data[i].cc + '</li><li class="estado-solicitud-t">' + data[i].id + '</li></ul>';
+      }
+    }
+
+    document.getElementById('solicitudes').innerHTML = cit;
+  });
+};
+
+exports.default = respuestas;
+
+},{"jquery":7}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -92,7 +128,7 @@ var cliente = function cliente() {
 
 exports.default = cliente;
 
-},{"../citas/citas":1,"jquery":6}],3:[function(require,module,exports){
+},{"../citas/citas":1,"jquery":7}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -133,7 +169,7 @@ var login = function login() {
 
 exports.default = login;
 
-},{"jquery":6}],4:[function(require,module,exports){
+},{"jquery":7}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -169,7 +205,11 @@ var registro = function registro() {
           dataType: 'json',
           data: datos,
           success: function success(data) {
-            console.log(data);
+            if (data == "=>") {
+              document.getElementById('respuesta').innerHTML = "<b>Registro Realizado, Inicie sesion</b>";
+            } else if (data == "==>") {
+              document.getElementById('respuesta').innerHTML = "<b>Ese correo ya esta registrado, favor de colocar uno diferente</b>";
+            }
           }
         });
       } else {
@@ -185,7 +225,7 @@ var registro = function registro() {
 
 exports.default = registro;
 
-},{"jquery":6}],5:[function(require,module,exports){
+},{"jquery":7}],6:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -212,9 +252,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   (0, _registro2.default)();
 });
 
-},{"./clientes/clientes":2,"./inicio/login":3,"./registro/registro":4,"jquery":6}],6:[function(require,module,exports){
+},{"./clientes/clientes":3,"./inicio/login":4,"./registro/registro":5,"jquery":7}],7:[function(require,module,exports){
 /*!
- * jQuery JavaScript Library v2.2.4
+ * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -224,7 +264,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-05-20T17:23Z
+ * Date: 2016-04-05T19:26Z
  */
 
 (function( global, factory ) {
@@ -280,7 +320,7 @@ var support = {};
 
 
 var
-	version = "2.2.4",
+	version = "2.2.3",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -5221,14 +5261,13 @@ jQuery.Event.prototype = {
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
-	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.preventDefault();
 		}
 	},
@@ -5237,7 +5276,7 @@ jQuery.Event.prototype = {
 
 		this.isPropagationStopped = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.stopPropagation();
 		}
 	},
@@ -5246,7 +5285,7 @@ jQuery.Event.prototype = {
 
 		this.isImmediatePropagationStopped = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.stopImmediatePropagation();
 		}
 
@@ -6176,6 +6215,19 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
+
+	// Support: IE11 only
+	// In IE 11 fullscreen elements inside of an iframe have
+	// 100x too small dimensions (gh-1764).
+	if ( document.msFullscreenElement && window.top !== window ) {
+
+		// Support: IE11 only
+		// Running getBoundingClientRect on a disconnected node
+		// in IE throws an error.
+		if ( elem.getClientRects().length ) {
+			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
+		}
+	}
 
 	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -8067,7 +8119,6 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
-	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -8075,10 +8126,27 @@ jQuery.extend( jQuery.event, {
 			{
 				type: type,
 				isSimulated: true
+
+				// Previously, `originalEvent: {}` was set here, so stopPropagation call
+				// would not be triggered on donor event, since in our own
+				// jQuery.event.stopPropagation function we had a check for existence of
+				// originalEvent.stopPropagation method, so, consequently it would be a noop.
+				//
+				// But now, this "simulate" function is used only for events
+				// for which stopPropagation() is noop, so there is no need for that anymore.
+				//
+				// For the 1.x branch though, guard for "click" and "submit"
+				// events is still used, but was moved to jQuery.event.stopPropagation function
+				// because `originalEvent` should point to the original event for the constancy
+				// with other events and for more focused logic
 			}
 		);
 
 		jQuery.event.trigger( e, null, elem );
+
+		if ( e.isDefaultPrevented() ) {
+			event.preventDefault();
+		}
 	}
 
 } );
@@ -10028,4 +10096,4 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}]},{},[5]);
+},{}]},{},[6]);

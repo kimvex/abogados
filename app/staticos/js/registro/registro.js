@@ -24,7 +24,11 @@ var registro = ()=>{
           dataType:'json',
           data:datos,
           success:(data)=>{
-            console.log(data);
+            if(data == "=>"){
+              document.getElementById('respuesta').innerHTML = "<b>Registro Realizado, Inicie sesion</b>";
+            }else if(data == "==>"){ 
+              document.getElementById('respuesta').innerHTML ="<b>Ese correo ya esta registrado, favor de colocar uno diferente</b>";
+            }
           }
         });
       }else{

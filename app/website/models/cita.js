@@ -4,7 +4,7 @@ var db = require('../controllers/db'),
 var cita = function(config){
   config = config || {};
   console.log(config.sol.body);
-  config.res.send(config.sol.body);
+  //config.res.send(config.sol.body);
 
   var request = new sql.Request();
   var datos = "'"+config.sol.body.asunto+"','"+config.sol.body.cc+"','"+config.sol.body.fecha+"','"+config.sol.session.name+"'";
@@ -12,7 +12,7 @@ var cita = function(config){
     if(err){
       throw err;
     }else{
-      config.res.send('cita hecha espera la respuesta');
+      config.res.json('cita hecha espera la respuesta');
     }
 
   });
