@@ -22,7 +22,7 @@ var cliente = ()=>{
         document.getElementById('contenido-clientes').innerHTML = data;
         cit();
       });
-      //e.preventDefault();
+      e.preventDefault();
     }
 
     $("#inf-personal").click(informacion);

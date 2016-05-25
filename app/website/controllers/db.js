@@ -6,7 +6,7 @@ var db = function(config){
   var config = {
     user: 'lolo',
     password: 'dolores12',
-    server: '192.168.0.113',
+    server: '192.168.1.79',
     database: 'lolo',
   }
 

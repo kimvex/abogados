@@ -77,7 +77,7 @@ var cliente = function cliente() {
         document.getElementById('contenido-clientes').innerHTML = data;
         (0, _citas2.default)();
       });
-      //e.preventDefault();
+      e.preventDefault();
     };
 
     (0, _jquery2.default)("#inf-personal").click(informacion);
