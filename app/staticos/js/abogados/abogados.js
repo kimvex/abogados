@@ -1,5 +1,7 @@
-$(function(){
+import $ from 'jquery';
+import abogCita from './solicitudes';
 
+var aboga = ()=>{
 	function casosAbogados(e){	
 		$.get('/casos-abogados',function(dato){
 			document.getElementById('contenido-abogado').innerHTML = dato;
@@ -10,6 +12,7 @@ $(function(){
 	function solicitud(e){	
 		$.get('/solicitudes',function(dato){
 			document.getElementById('contenido-abogado').innerHTML = dato;
+		  abogCita();
 		});
 		e.preventDefault();
 	}	
@@ -28,4 +31,7 @@ $(function(){
 		document.getElementById('contenido-abogado').innerHTML = dato;
 	});
 
-});
+	console.log("dfsf");
+}
+
+export default aboga;

@@ -2,6 +2,83 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _solicitudes = require('./solicitudes');
+
+var _solicitudes2 = _interopRequireDefault(_solicitudes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var aboga = function aboga() {
+	function casosAbogados(e) {
+		_jquery2.default.get('/casos-abogados', function (dato) {
+			document.getElementById('contenido-abogado').innerHTML = dato;
+		});
+		e.preventDefault();
+	}
+
+	function solicitud(e) {
+		_jquery2.default.get('/solicitudes', function (dato) {
+			document.getElementById('contenido-abogado').innerHTML = dato;
+			(0, _solicitudes2.default)();
+		});
+		e.preventDefault();
+	}
+	function informacionAbogado(e) {
+		_jquery2.default.get('/informacion-abogados', function (dato) {
+			document.getElementById('contenido-abogado').innerHTML = dato;
+		});
+		e.preventDefault();
+	}
+
+	(0, _jquery2.default)("#informacion-abogado").click(informacionAbogado);
+	(0, _jquery2.default)("#casos").click(casosAbogados);
+	(0, _jquery2.default)("#solicitud-abogado").click(solicitud);
+
+	_jquery2.default.get('/informacion-abogados', function (dato) {
+		document.getElementById('contenido-abogado').innerHTML = dato;
+	});
+
+	console.log("dfsf");
+};
+
+exports.default = aboga;
+
+},{"./solicitudes":2,"jquery":9}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var solicitud = function solicitud() {
+
+  function desplegar(e) {
+    (0, _jquery2.default)('#1').fadeToggle();
+    e.preventDefault();
+  }
+  console.log("dfd");
+  (0, _jquery2.default)('#abogado-solicitud-t').click(desplegar);
+};
+
+exports.default = solicitud;
+
+},{"jquery":9}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -42,7 +119,7 @@ var citas = function citas() {
 
 exports.default = citas;
 
-},{"./respuestas":2,"jquery":7}],2:[function(require,module,exports){
+},{"./respuestas":4,"jquery":9}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -73,7 +150,7 @@ var respuestas = function respuestas() {
 
 exports.default = respuestas;
 
-},{"jquery":7}],3:[function(require,module,exports){
+},{"jquery":9}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -128,7 +205,7 @@ var cliente = function cliente() {
 
 exports.default = cliente;
 
-},{"../citas/citas":1,"jquery":7}],4:[function(require,module,exports){
+},{"../citas/citas":3,"jquery":9}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -169,7 +246,7 @@ var login = function login() {
 
 exports.default = login;
 
-},{"jquery":7}],5:[function(require,module,exports){
+},{"jquery":9}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -225,7 +302,7 @@ var registro = function registro() {
 
 exports.default = registro;
 
-},{"jquery":7}],6:[function(require,module,exports){
+},{"jquery":9}],8:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -244,17 +321,22 @@ var _registro = require('./registro/registro');
 
 var _registro2 = _interopRequireDefault(_registro);
 
+var _abogados = require('./abogados/abogados.js');
+
+var _abogados2 = _interopRequireDefault(_abogados);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)(document).ready(function () {
   (0, _login2.default)();
   (0, _clientes2.default)();
   (0, _registro2.default)();
+  (0, _abogados2.default)();
 });
 
-},{"./clientes/clientes":3,"./inicio/login":4,"./registro/registro":5,"jquery":7}],7:[function(require,module,exports){
+},{"./abogados/abogados.js":1,"./clientes/clientes":5,"./inicio/login":6,"./registro/registro":7,"jquery":9}],9:[function(require,module,exports){
 /*!
- * jQuery JavaScript Library v2.2.4
+ * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -264,7 +346,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-05-20T17:23Z
+ * Date: 2016-04-05T19:26Z
  */
 
 (function( global, factory ) {
@@ -320,7 +402,7 @@ var support = {};
 
 
 var
-	version = "2.2.4",
+	version = "2.2.3",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -5261,14 +5343,13 @@ jQuery.Event.prototype = {
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
-	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.preventDefault();
 		}
 	},
@@ -5277,7 +5358,7 @@ jQuery.Event.prototype = {
 
 		this.isPropagationStopped = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.stopPropagation();
 		}
 	},
@@ -5286,7 +5367,7 @@ jQuery.Event.prototype = {
 
 		this.isImmediatePropagationStopped = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.stopImmediatePropagation();
 		}
 
@@ -6216,6 +6297,19 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
+
+	// Support: IE11 only
+	// In IE 11 fullscreen elements inside of an iframe have
+	// 100x too small dimensions (gh-1764).
+	if ( document.msFullscreenElement && window.top !== window ) {
+
+		// Support: IE11 only
+		// Running getBoundingClientRect on a disconnected node
+		// in IE throws an error.
+		if ( elem.getClientRects().length ) {
+			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
+		}
+	}
 
 	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -8107,7 +8201,6 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
-	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -8115,10 +8208,27 @@ jQuery.extend( jQuery.event, {
 			{
 				type: type,
 				isSimulated: true
+
+				// Previously, `originalEvent: {}` was set here, so stopPropagation call
+				// would not be triggered on donor event, since in our own
+				// jQuery.event.stopPropagation function we had a check for existence of
+				// originalEvent.stopPropagation method, so, consequently it would be a noop.
+				//
+				// But now, this "simulate" function is used only for events
+				// for which stopPropagation() is noop, so there is no need for that anymore.
+				//
+				// For the 1.x branch though, guard for "click" and "submit"
+				// events is still used, but was moved to jQuery.event.stopPropagation function
+				// because `originalEvent` should point to the original event for the constancy
+				// with other events and for more focused logic
 			}
 		);
 
 		jQuery.event.trigger( e, null, elem );
+
+		if ( e.isDefaultPrevented() ) {
+			event.preventDefault();
+		}
 	}
 
 } );
@@ -10068,4 +10178,4 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}]},{},[6]);
+},{}]},{},[8]);

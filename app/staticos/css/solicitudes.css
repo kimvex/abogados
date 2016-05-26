@@ -103,7 +103,9 @@
 	border-left: 1px solid #303841;
 }
 
-
+.menu-oculto{
+	display: none;
+}
 
 
 
