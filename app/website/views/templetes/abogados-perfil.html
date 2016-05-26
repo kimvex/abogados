@@ -24,8 +24,10 @@
 		<nav class="menu-abogado">
 				<a href="#" id="informacion-abogado"><li>Información Abogado</li></a>
 				<a href="#" id="casos"><li>Casos</li></a>
-				<a href="#" id="solicitud-abogado"><li>Solicitudes</li></a>
-				<a href="#" id="registro-abogado"><li>Registra Nuevo Abogado</li></a>
+				{% if admin == 1 %}
+					<a href="#" id="solicitud-abogado"><li>Solicitudes</li></a>
+					<a href="#" id="registro-abogado"><li>Registra Nuevo Abogado</li></a>
+				{% endif %}
 		</nav>
 		<div class="contenido-abogado" id="contenido-abogado">
 			

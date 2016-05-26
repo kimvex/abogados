@@ -113,6 +113,9 @@
 .menu-oculto{
 	display: none;
 }
+.menu-visible{
+	display: block;
+}
 
 .abogado-asignado{
 	padding: 0;

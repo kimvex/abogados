@@ -16,6 +16,7 @@
     "catlistener": "0.0.9",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "fs-extra": "^0.30.0",
     "jquery": "^2.2.3",
     "moment": "^2.13.0",
     "mssql": "^3.3.0",

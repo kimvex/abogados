@@ -18,6 +18,12 @@ var login = ()=>{
         if(data == '=>'){
           window.location = '/perfil';
         }
+        if(data == '==>'){
+          document.getElementById('er').innerHTML = "Contraseña Incorrecta";
+        }
+        if(data == '<='){
+          document.getElementById('er').innerHTML = "Correo incorrecto";
+        }
       }
     });
 

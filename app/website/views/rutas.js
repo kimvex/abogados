@@ -5,7 +5,12 @@ var db          = require('../controllers/db'),
     Registro    = require('../controllers/registro'),
     Informacion = require('../models/informacionPersonal'),
     Cita        = require('../models/cita'),
-    Solicitud   = require('../models/solicitudes');
+    Solicitud   = require('../models/solicitudes'),
+    AbLog       = require('../controllers/loginA'),
+    InfoAboga   = require('../models/informacionAbogado'),
+    Admin       = require('../models/admin'),
+    RegistroAb  = require('../models/registroAb'),
+    SolAb       = require('../models/solAb');
 
 var dbis = new db();
 var rutas = function(config){
@@ -34,24 +39,38 @@ var rutas = function(config){
     res.render('casos');
   });  
 
-  config.app.get('/citas',(sol,res,next)=>{
+  config.app.get('/citas',validar.iniciado,(sol,res,next)=>{
     res.render('citas');
   });  
 
-  config.app.get('/perfil-abogados',(sol,res,next)=>{
-    res.render('abogados-perfil');
+  config.app.get('/perfil-abogados',validar.iniciado,(sol,res,next)=>{
+    const datos = {
+      sol: sol,
+      res: res
+    }
+
+    const adm = new Admin(datos);
   }); 
 
-  config.app.get('/casos-abogados',(sol,res,next)=>{
+  config.app.get('/casos-abogados',validar.iniciado,(sol,res,next)=>{
     res.render('casos-abogados');
   });  
-  config.app.get('/solicitudes',(sol,res,next)=>{
-    res.render('solicitudes');
+  config.app.get('/solicitudes',validar.iniciado,(sol,res,next)=>{
+    const datos = {
+      sol: sol,
+      res:res
+    }
+    const solA = new SolAb(datos);
   });  
-  config.app.get('/informacion-abogados',(sol,res,next)=>{
-    res.render('informacion-abogados');
+  config.app.get('/informacion-abogados',validar.iniciado,(sol,res,next)=>{
+    var datos = {
+      sol: sol,
+      res: res
+    }
+
+    var info = new InfoAboga(datos);
   });  
-  config.app.get('/nuevo-abogado',(sol,res,next)=>{
+  config.app.get('/nuevo-abogado',validar.iniciado,(sol,res,next)=>{
     res.render('nuevo-abogado');
   });
 
@@ -78,15 +97,22 @@ var rutas = function(config){
           console.log(err);
         }
 
-        console.log(datos);
-        request.query("select * from clientes2 where correo='"+datos[0].correo+"' and contrasena='"+sol.body.pass+"'",function(error,respuesta){
-          if(error){
-            console.log(error);
-          }
-          sol.session.name = respuesta[0].correo;
-          sol.session.cookie.expires = moment().add(14,'days').unix();
-          res.json('=>');
-        });
+        if(datos[0] == undefined){
+          res.json('<=');
+        }else{        
+          request.query("select * from clientes2 where correo='"+datos[0].correo+"' and contrasena='"+sol.body.pass+"'",function(error,respuesta){
+            if(error){
+              console.log(error);
+            }
+            if(respuesta[0] == undefined){
+              res.json('==>');
+            }else{          
+              sol.session.name = respuesta[0].correo;
+              sol.session.cookie.expires = moment().add(14,'days').unix();
+              res.json('=>');
+            }
+          });
+        }
       });
 
   });
@@ -112,6 +138,29 @@ var rutas = function(config){
 
   });
 
+
+  //Login abogados
+  config.app.post('/login-ab',(sol,res,next)=>{
+    var datos = {
+      sol: sol,
+      res: res
+    }
+
+    var login = new AbLog(datos);
+  });
+
+  config.app.post('/nuevo-ab',(sol,res,next)=>{
+    const datos = {
+      sol:sol,
+      res: res
+    }
+
+    const registro = new RegistroAb(datos);
+  });
+
+  config.app.post('/asignarAb',(sol,res,next)=>{
+    console.log(sol.body);
+  });
 }
 
 module.exports = rutas;

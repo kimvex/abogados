@@ -8,21 +8,21 @@
 <body class="cuerpo-inf-per">
 	<section class="contenido-informacion">
 		<h3 class="titulo-informacion">Información Personal</h3>
-		<img class="img-inf" src="img/anonimo.jpg">
+		<img class="img-inf" src="perfiles/{{ datos.correo }}/{{ imagen }}">
 		<span class="span-foto">Agrega una foto a tu perfil</span>
 		<input type="file" id="subir-foto" class="subir-foto">
 		<ul class="ul-inf">			
-			<li class="li-inf" id="nombre-abogado">NOMBRE:</li>
-			<li class="li-inf" id="apellido-abogado">APELLIDO:</li>
-			<li class="li-inf" id="nacimiento-abogado">FECHA NACIMIENTO:</li>
-			<li class="li-inf" id="domicilio-abogado">DOMICILIO:</li>
-			<li class="li-inf" id="cedula-abogado">CEDULA:</li>
-			<li class="li-inf" id="experiencia-abogado">EXPERIENCIA:</li>
-			<li class="li-inf" id="rfc-abogado">RFC:</li>
-			<li class="li-inf" id="sexo-abogado">SEXO:</li>
-			<li class="li-inf" id="ciudad-abogado">CIUDAD:</li>
-			<li class="li-inf" id="telefono-abogado">TELEFONO:</li>
-			<li class="li-inf" id="correo-abogado">CORREO:</li>
+			<li class="li-inf" id="nombre-abogado">NOMBRE: {{ datos.nombre }}</li>
+			<li class="li-inf" id="apellido-abogado">APELLIDO: {{ datos.apellidos }}</li>
+			<li class="li-inf" id="nacimiento-abogado">FECHA NACIMIENTO: {{ datos.fec_nac }}</li>
+			<li class="li-inf" id="domicilio-abogado">DOMICILIO: {{ datos.domicilio }}</li>
+			<li class="li-inf" id="cedula-abogado">CEDULA: {{ datos.cedula }}</li>
+			<li class="li-inf" id="experiencia-abogado">EXPERIENCIA: {{ datos.experiencia }}</li>
+			<li class="li-inf" id="rfc-abogado">RFC: {{ datos.rfc }}</li>
+			<li class="li-inf" id="sexo-abogado">SEXO: {{ datos.sexo }}</li>
+			<li class="li-inf" id="ciudad-abogado">CIUDAD: {{ datos.ciudad }}</li>
+			<li class="li-inf" id="telefono-abogado">TELEFONO: {{ datos.telefono }}</li>
+			<li class="li-inf" id="correo-abogado">CORREO: {{ datos.correo }}</li>
 		</ul>
 	</section>
 </body>

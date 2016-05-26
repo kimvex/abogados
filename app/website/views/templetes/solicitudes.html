@@ -14,23 +14,24 @@
 			<li class="abogado-solicitud-t">Abogado</li>
 			<li class="asignar-solicitud-t"></li>
 		</ul>			
-		<article class="solicitudes" id="solicitudes">
-			<form class="form-solicitudes-abogado">
-				<ul class="solicitudes-estado">
-					<li class="asunto-solicitud" id="asunto-solicitud">Asunto</li>
-					<li class="fecha-solicitud" id="fecha-solicitud">Fecha</li>
-					<li class="estado-solicitud" id="estado-solicitud">Estado</li>
-					<li class="abogado-solicitud abgd-color" id="abogado-solicitud-t">abogado</li>
-					<li class="asignar-solicitud" id="asignar-solicitud-t"><input type="submit" name="asignar-caso" value="Confirmar" class="btn-confirmar"></li>
-				</ul>
-				<div class="menu-oculto" id="1">
-					<input class="abogado-asignado" type="checkbox" name="abogado-asignado" value="1" id="abogado1">Abogado Uno				
-					<input class="abogado-asignado" type="checkbox" name="abogado-asignado" value="2" id="abogado2">Abogado Dos				
-					<input class="abogado-asignado" type="checkbox" name="abogado-asignado" value="3" id="abogado3">Abogado Tres
+		<article class="solicitudes" id="solicitudes" >
+				{% for i in citas %}
+				<form class="form-solicitudes-abogado" id="{{ i.id }}" enctype="multipart/form-data">
+					<ul class="solicitudes-estado">
+						<li class="asunto-solicitud" id="asunto-solicitud">{{ i.asunto }}</li>
+						<li class="fecha-solicitud" id="fecha-solicitud">{{ i.fecha }}</li>
+						<li class="estado-solicitud" id="estado-solicitud">seleciona</li>
+						<li class="abogado-solicitud abgd-color">
+						<select name="abogad-os" id="{{ i.id + 1}}">
+							{% for j in abogados %}
+								<option class="abogado-asignado" value="{{ j.correo }}">{{ j.nombre }}
+							{% endfor %}
+						</select></li>
+						<li class="asignar-solicitud" id="asignar-solicitud-t"><input type="submit" name="asignar-caso" value="Confirmar" class="btn-confirmar"></li>
+					</ul>
+				</form>
+				{% endfor %}
 
-					<input type="submit" value="Asignar" class="boton-asignar" name="abogado-asignado" id="boton-asignar">
-				</div>
-			</form>
 		</article>
 		
 	</section>

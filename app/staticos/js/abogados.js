@@ -13,11 +13,16 @@ var _solicitudes = require('./solicitudes');
 
 var _solicitudes2 = _interopRequireDefault(_solicitudes);
 
+var _registro = require('../admin/registro');
+
+var _registro2 = _interopRequireDefault(_registro);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var aboga = function aboga() {
 	function casosAbogados(e) {
 		_jquery2.default.get('/casos-abogados', function (dato) {
+			localStorage['lugar-peq'] = 'casoAb';
 			document.getElementById('contenido-abogado').innerHTML = dato;
 		});
 		e.preventDefault();
@@ -25,6 +30,7 @@ var aboga = function aboga() {
 
 	function solicitud(e) {
 		_jquery2.default.get('/solicitudes', function (dato) {
+			localStorage['lugar-peq'] = 'solicitudAb';
 			document.getElementById('contenido-abogado').innerHTML = dato;
 			(0, _solicitudes2.default)();
 		});
@@ -32,13 +38,16 @@ var aboga = function aboga() {
 	}
 	function informacionAbogado(e) {
 		_jquery2.default.get('/informacion-abogados', function (dato) {
+			localStorage['lugar-peq'] = 'infoAbogado';
 			document.getElementById('contenido-abogado').innerHTML = dato;
 		});
 		e.preventDefault();
 	}
 	function nuevoAbogado(e) {
 		_jquery2.default.get('/nuevo-abogado', function (dato) {
+			localStorage['lugar-peq'] = 'nuevo';
 			document.getElementById('contenido-abogado').innerHTML = dato;
+			(0, _registro2.default)();
 		});
 		e.preventDefault();
 	}
@@ -49,6 +58,7 @@ var aboga = function aboga() {
 	(0, _jquery2.default)("#registro-abogado").click(nuevoAbogado);
 
 	_jquery2.default.get('/informacion-abogados', function (dato) {
+		localStorage['lugar-peq'] = 'infoAbogado';
 		document.getElementById('contenido-abogado').innerHTML = dato;
 	});
 
@@ -57,7 +67,33 @@ var aboga = function aboga() {
 
 exports.default = aboga;
 
-},{"./solicitudes":2,"jquery":9}],2:[function(require,module,exports){
+},{"../admin/registro":3,"./solicitudes":2,"jquery":11}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jquery = require("jquery");
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var solicitud = function solicitud() {
+  function enviarDatos(e) {
+    var idd = String(e.target.id + 1);
+    console.log(idd);
+    console.log((0, _jquery2.default)("#" + idd + "").val());
+    console.log(document.getElementById(idd).value);
+    e.preventDefault();
+  }
+  (0, _jquery2.default)(".form-solicitudes-abogado").submit(enviarDatos);
+};
+
+exports.default = solicitud;
+
+},{"jquery":11}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -70,19 +106,53 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var solicitud = function solicitud() {
+var nuevo = function nuevo() {
+  if (localStorage['lugar-peq'] == 'nuevo') {
+    var registroAb = function registroAb(e) {
+      if ((0, _jquery2.default)('#pass1-abogado').val() == (0, _jquery2.default)('#pass2-abogado').val()) {
+        var datos = {
+          nombre: (0, _jquery2.default)('#nombre-abogado').val(),
+          apellido: (0, _jquery2.default)('#apellido-abogado').val(),
+          fecha: (0, _jquery2.default)('#nacimiento-abogado').val(),
+          domicilio: (0, _jquery2.default)('#domicilio-abogado').val(),
+          sexo: (0, _jquery2.default)('#sexo-abogado').val(),
+          cedula: (0, _jquery2.default)('#cedula-abogado').val(),
+          rfc: (0, _jquery2.default)("#rfc-abogado").val(),
+          experiencia: (0, _jquery2.default)("#experiencia-abogado").val(),
+          ciudad: (0, _jquery2.default)("#ciudad-abogado").val(),
+          telefono: (0, _jquery2.default)("#telefono-abogado").val(),
+          correo: (0, _jquery2.default)("#correo-abogado").val(),
+          pass: (0, _jquery2.default)('#pass1-abogado').val()
+        };
 
-  function desplegar(e) {
-    (0, _jquery2.default)('#1').fadeToggle();
-    e.preventDefault();
+        _jquery2.default.ajax('/nuevo-ab', {
+          type: "post",
+          dataType: 'json',
+          data: datos,
+          success: function success(dato) {
+            console.log(dato);
+            if (dato == '=>') {
+              (0, _jquery2.default)('#registro-abogados').html('<h1>Registro Realizado</h1>');
+            } else if (dato == '<=') {
+              (0, _jquery2.default)('#fallo-resgitro').html('<h1>Fallo el registro</h1>');
+            } else if (dato == '<<=') {
+              (0, _jquery2.default)('#fallo-resgitro').html('<h1>El correo ya existe</h1>');
+            }
+          }
+        });
+      } else {
+        (0, _jquery2.default)('#fallo-resgitro').html('<h1>Las contraseñas son incorrectas</h1>');
+      }
+      e.preventDefault();
+    };
+
+    (0, _jquery2.default)("#registro-abogados").submit(registroAb);
   }
-  console.log("dfd");
-  (0, _jquery2.default)('#abogado-solicitud-t').click(desplegar);
 };
 
-exports.default = solicitud;
+exports.default = nuevo;
 
-},{"jquery":9}],3:[function(require,module,exports){
+},{"jquery":11}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -126,7 +196,7 @@ var citas = function citas() {
 
 exports.default = citas;
 
-},{"./respuestas":4,"jquery":9}],4:[function(require,module,exports){
+},{"./respuestas":5,"jquery":11}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -157,7 +227,7 @@ var respuestas = function respuestas() {
 
 exports.default = respuestas;
 
-},{"jquery":9}],5:[function(require,module,exports){
+},{"jquery":11}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -212,7 +282,7 @@ var cliente = function cliente() {
 
 exports.default = cliente;
 
-},{"../citas/citas":3,"jquery":9}],6:[function(require,module,exports){
+},{"../citas/citas":4,"jquery":11}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -242,6 +312,12 @@ var login = function login() {
         if (data == '=>') {
           window.location = '/perfil';
         }
+        if (data == '==>') {
+          document.getElementById('er').innerHTML = "Contraseña Incorrecta";
+        }
+        if (data == '<=') {
+          document.getElementById('er').innerHTML = "Correo incorrecto";
+        }
       }
     });
 
@@ -253,7 +329,56 @@ var login = function login() {
 
 exports.default = login;
 
-},{"jquery":9}],7:[function(require,module,exports){
+},{"jquery":11}],8:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var abogadoLog = function abogadoLog() {
+  if (localStorage['lugar'] == 'inicio') {
+    var logAb = function logAb(e) {
+
+      var datos = {
+        usuario: (0, _jquery2.default)('#usuario-abogado').val(),
+        pass: (0, _jquery2.default)('#pass-ab').val()
+      };
+
+      _jquery2.default.ajax('/login-ab', {
+        type: 'post',
+        dataType: 'json',
+        data: datos,
+        success: function success(datos) {
+          if (datos == '=>') {
+            window.location = '/perfil-abogados';
+          }
+          if (datos == '<=') {
+            (0, _jquery2.default)('#err-abogado').html('Correo incorrecto');
+          }
+
+          if (datos == '<<=') {
+            (0, _jquery2.default)('#err-abogado').html('Contraseña incorrecta');
+          }
+        }
+      });
+
+      e.preventDefault();
+    };
+
+    (0, _jquery2.default)('#login-abogado').submit(logAb);
+  }
+};
+
+exports.default = abogadoLog;
+
+},{"jquery":11}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -309,7 +434,7 @@ var registro = function registro() {
 
 exports.default = registro;
 
-},{"jquery":9}],8:[function(require,module,exports){
+},{"jquery":11}],10:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -332,18 +457,23 @@ var _abogados = require('./abogados/abogados.js');
 
 var _abogados2 = _interopRequireDefault(_abogados);
 
+var _loginA = require('./inicio/loginA');
+
+var _loginA2 = _interopRequireDefault(_loginA);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)(document).ready(function () {
   (0, _login2.default)();
+  (0, _loginA2.default)();
   (0, _clientes2.default)();
   (0, _registro2.default)();
   (0, _abogados2.default)();
 });
 
-},{"./abogados/abogados.js":1,"./clientes/clientes":5,"./inicio/login":6,"./registro/registro":7,"jquery":9}],9:[function(require,module,exports){
+},{"./abogados/abogados.js":1,"./clientes/clientes":6,"./inicio/login":7,"./inicio/loginA":8,"./registro/registro":9,"jquery":11}],11:[function(require,module,exports){
 /*!
- * jQuery JavaScript Library v2.2.4
+ * jQuery JavaScript Library v2.2.3
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -353,7 +483,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-05-20T17:23Z
+ * Date: 2016-04-05T19:26Z
  */
 
 (function( global, factory ) {
@@ -409,7 +539,7 @@ var support = {};
 
 
 var
-	version = "2.2.4",
+	version = "2.2.3",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -5350,14 +5480,13 @@ jQuery.Event.prototype = {
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
-	isSimulated: false,
 
 	preventDefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.preventDefault();
 		}
 	},
@@ -5366,7 +5495,7 @@ jQuery.Event.prototype = {
 
 		this.isPropagationStopped = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.stopPropagation();
 		}
 	},
@@ -5375,7 +5504,7 @@ jQuery.Event.prototype = {
 
 		this.isImmediatePropagationStopped = returnTrue;
 
-		if ( e && !this.isSimulated ) {
+		if ( e ) {
 			e.stopImmediatePropagation();
 		}
 
@@ -6305,6 +6434,19 @@ function getWidthOrHeight( elem, name, extra ) {
 		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 		styles = getStyles( elem ),
 		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
+
+	// Support: IE11 only
+	// In IE 11 fullscreen elements inside of an iframe have
+	// 100x too small dimensions (gh-1764).
+	if ( document.msFullscreenElement && window.top !== window ) {
+
+		// Support: IE11 only
+		// Running getBoundingClientRect on a disconnected node
+		// in IE throws an error.
+		if ( elem.getClientRects().length ) {
+			val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
+		}
+	}
 
 	// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -8196,7 +8338,6 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
-	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -8204,10 +8345,27 @@ jQuery.extend( jQuery.event, {
 			{
 				type: type,
 				isSimulated: true
+
+				// Previously, `originalEvent: {}` was set here, so stopPropagation call
+				// would not be triggered on donor event, since in our own
+				// jQuery.event.stopPropagation function we had a check for existence of
+				// originalEvent.stopPropagation method, so, consequently it would be a noop.
+				//
+				// But now, this "simulate" function is used only for events
+				// for which stopPropagation() is noop, so there is no need for that anymore.
+				//
+				// For the 1.x branch though, guard for "click" and "submit"
+				// events is still used, but was moved to jQuery.event.stopPropagation function
+				// because `originalEvent` should point to the original event for the constancy
+				// with other events and for more focused logic
 			}
 		);
 
 		jQuery.event.trigger( e, null, elem );
+
+		if ( e.isDefaultPrevented() ) {
+			event.preventDefault();
+		}
 	}
 
 } );
@@ -10157,4 +10315,4 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}]},{},[8]);
+},{}]},{},[10]);

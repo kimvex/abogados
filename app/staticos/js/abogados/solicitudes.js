@@ -1,13 +1,14 @@
 import $ from 'jquery';
 
 var solicitud =()=>{
-
-  function desplegar(e){
-    $('#1').fadeToggle();
+  function enviarDatos(e){
+    var idd = String(e.target.id + 1);
+    console.log(idd);
+    console.log($("#"+idd+"").val());
+    console.log(document.getElementById(idd).value);
     e.preventDefault();
   }
-  console.log("dfd");
-  $('#abogado-solicitud-t').click(desplegar);
+  $(".form-solicitudes-abogado").submit(enviarDatos);
 }
 
 export default solicitud;
