@@ -6,24 +6,28 @@
 	margin: 0;
 	padding: 0;
 }
-.contenido-casos{
-	width: 80%;
-}
 .titulo-casos{
+	width: 100%;
 	color: #00695c;
 	font-size: 2rem;
 	text-align: center;
 	border-bottom: 2px solid #00695c; 
 }
 .ul-casos-titulo{
+	width: 100%;
 	background: #00695c;
 	padding: 0;
 	margin: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color: #fff;
+}
+.contenido-casos{
+	width: 99%;
 }
 .ul-casos{
+	width: 100%;
 	padding: 0;
 	margin: 0;
 	margin-top: 1rem;
@@ -48,18 +52,20 @@
 	font-size: 1rem;
 }
 .numero-casos{
-	width: 10%;
+	width: 5%;
 }
 .descripcion-casos{
-	width: 54%;
+	width: 45%;
 }
 .folio-casos{
-	width: 15%;
+	width: 12%;
 }
 .status-casos{
-	width: 20%;
+	width: 15%;
 }
-
+.abogado-casos{
+	width: 22%;
+}
 
 
 

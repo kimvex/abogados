@@ -27,6 +27,5 @@ $(function(){
 	$.get('/informacion-abogados',function(dato){
 		document.getElementById('contenido-abogado').innerHTML = dato;
 	});
-	e.preventDefault();
 
 });
