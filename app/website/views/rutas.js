@@ -47,6 +47,9 @@ var rutas = function(config){
   });  
   config.app.get('/solicitudes',(sol,res,next)=>{
     res.render('solicitudes');
+  });  
+  config.app.get('/informacion-abogados',(sol,res,next)=>{
+    res.render('informacion-abogados');
   });
 
   config.app.get('/solicitud',validar.iniciado,(sol,res,next)=>{

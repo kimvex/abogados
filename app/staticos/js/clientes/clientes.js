@@ -24,7 +24,7 @@ var cliente = ()=>{
         cit();
 
       });
-      //e.preventDefault();
+      e.preventDefault();
     }
 
     $("#inf-personal").click(informacion);
