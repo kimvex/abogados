@@ -45,7 +45,7 @@
 	text-align: center;
 }
 .asunto-solicitud-t{
-	width: 40%;
+	width: 35%;
 	list-style: none;
 
 }
@@ -65,9 +65,12 @@
 	border-left: 1px solid #fff;
 }
 .asignar-solicitud-t{
-	width: 5%;
+	width: 10%;
 	list-style: none;
 	border-left: 1px solid #fff;
+}
+.form-solicitudes-abogado{
+	width: 100%;
 }
 .solicitudes-estado{
 	width: 100%;
@@ -79,7 +82,7 @@
 	text-align: center;
 }
 .asunto-solicitud{
-	width: 40%;
+	width: 35%;
 	list-style: none;
 }
 .fecha-solicitud{
@@ -97,8 +100,12 @@
 	list-style: none;
 	border-left: 1px solid #303841;
 }
+.abgd-color{
+	border: 1px solid #303841;
+	cursor: pointer;
+}
 .asignar-solicitud{
-	width: 5%;
+	width: 10%;
 	list-style: none;
 	border-left: 1px solid #303841;
 }
@@ -107,8 +114,31 @@
 	display: none;
 }
 
-
-
-
+.abogado-asignado{
+	padding: 0;
+	margin: 0;
+}
+.boton-asignar{
+	width: 100px;
+	margin: 1rem 0;
+	display: block;
+	cursor: pointer;
+	background: #00695c;
+	border: none;
+	color: #fff;
+	box-shadow: rgba(0,0,0,.5) 1px 1px 3px;
+}
+.btn-confirmar{
+	width: 80%;
+	margin: 0;
+	padding: .2rem 0;
+	border: none;
+	background: #00695c;
+	color: #fff;
+	font-size: .8rem;
+	box-shadow: rgba(0,0,0,.5) 1px 1px 3px;
+	border-radius: 5px;
+	cursor: pointer;
+}
 
 

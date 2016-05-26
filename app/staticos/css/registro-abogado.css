@@ -34,3 +34,10 @@ input{
 	border-bottom: 9px solid #ff8f00;
 	margin-top: 1.5rem; 
 }
+.registrar{
+	color: #fff;
+	font-size: 1.2rem;
+	cursor: pointer;
+	background:  #ffb300; 
+	margin-top: 1rem;
+}
