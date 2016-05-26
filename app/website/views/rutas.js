@@ -50,6 +50,9 @@ var rutas = function(config){
   });  
   config.app.get('/informacion-abogados',(sol,res,next)=>{
     res.render('informacion-abogados');
+  });  
+  config.app.get('/nuevo-abogado',(sol,res,next)=>{
+    res.render('nuevo-abogado');
   });
 
   config.app.get('/solicitud',validar.iniciado,(sol,res,next)=>{
