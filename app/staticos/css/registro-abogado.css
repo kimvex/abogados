@@ -1,0 +1,43 @@
+.registrate-abogado{
+	width: 100%;
+	height: 600px;
+}
+.formulario-registrate-abogado{
+	width: 60%;
+/*	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;*/
+	background: #fff;
+	padding: .3rem 1.5rem;
+}
+h3{
+	color: #ffb300;
+	margin: 0;
+	font-size: 3em;
+	margin-bottom: .6rem;
+}
+input{
+	width: 100%;
+	padding: .6rem 0;
+	border: none;
+	border-bottom: 2px solid rgba(0,0,0,.2);
+	outline: none;
+	color: gray;
+	font-size: 1rem;
+}
+.registrar-abogado{
+	background:  #ffb300;
+	color: #fff;
+	border: none;
+	padding: .7rem 0;
+	border-bottom: 9px solid #ff8f00;
+	margin-top: 1.5rem; 
+}
+.registrar{
+	color: #fff;
+	font-size: 1.2rem;
+	cursor: pointer;
+	background:  #ffb300; 
+	margin-top: 1rem;
+}
